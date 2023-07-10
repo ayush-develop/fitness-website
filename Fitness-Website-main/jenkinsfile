@@ -3,24 +3,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'master', url: 'https://github.com/ayush-develop/fitness-website.git'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm run test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'rsync -r --delete-after $WORKSPACE/dist/* user@server:/var/www/html'
-            }
-        }
+        // add more stages here
     }
 }
